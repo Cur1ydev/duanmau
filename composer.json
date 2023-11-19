@@ -1,0 +1,31 @@
+{
+    "name": "loi/xoan",
+    "autoload": {
+        "psr-4": {
+            "Loi\\Xoan\\": "src/",
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helpers/functions.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Phạm Lợi",
+            "email": "loixoan28.07@gmail.com"
+        }
+    ],
+    "require": {
+        "eftec/bladeone": "^4.9",
+        "phroute/phroute": "^2.2",
+        "illuminate/support": "^10.30",
+        "illuminate/routing": "^10.30",
+        "illuminate/contracts": "^10.30",
+        "illuminate/database": "^10.30",
+        "php-di/php-di": "^7.0",
+      "ext-pdo": "*"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.6"
+    }
+}
