@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 if (!function_exists('getRequest')) {
     function getRequest()
@@ -16,9 +17,8 @@ if (!function_exists('getAll')) {
     }
 }
 if (!function_exists('getOne')) {
-    function getOne($table, $model, $id)
+    function getOne($sql, $model)
     {
-        $sql = "select * from $table where id=$id";
         $model->setQuery($sql);
         return $model->loadRow();
     }
@@ -38,9 +38,16 @@ if (!function_exists('updateTable')) {
     }
 }
 if (!function_exists('deleteTable')) {
-    function deleteTable($sql, $model)
+    function deleteTable($sql, $model, $id)
     {
         $model->setQuery($sql);
-        return $model->execute();
+        return $model->execute([$id]);
+    }
+}
+if (!function_exists('getCategory')) {
+    function getCategory()
+    {
+        $category = new Category();
+        return $category->list();
     }
 }

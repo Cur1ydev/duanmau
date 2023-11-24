@@ -149,80 +149,36 @@
                             </div>
                             <nav class="categorie-menus ha-dropdown">
                                 <ul id="menu2">
-                                    <li><a href="shop-grid-left-sidebar.html">Audio & Home Theater <span class="lnr lnr-chevron-right"></span></a>
-                                        <ul class="cat-submenu">
-                                            <li><a href="shop-grid-left-sidebar.html">Home Audio <span class="lnr lnr-chevron-right"></span></a>
-                                                <ul class="cat-submenu">
-                                                    <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-grid-left-sidebar.html">Blu-ray Disc Players</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">Curved TVs<span class="lnr lnr-chevron-right"></span></a>
-                                                <ul class="cat-submenu">
-                                                    <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="shop-grid-left-sidebar.html">Streaming Media Players</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">OLED TVs</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">LED & LCD TVs</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop-grid-left-sidebar.html">Video & Home Theater<span class="lnr lnr-chevron-right"></span></a>
-                                        <ul class="cat-submenu category-mega">
-                                            <li class="cat-mega-title"><a href="#">Security Cameras</a>
-                                                <ul>
-                                                    <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Point</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="cat-mega-title"><a href="#">Mirrorless Cameras</a>
-                                                <ul>
-                                                    <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Point</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="cat-mega-title"><a href="#">Digital Cameras</a>
-                                                <ul>
-                                                    <li><a href="shop-grid-left-sidebar.html">DSLR Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Lense Camera</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Digital Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Mirrorless Cameras</a></li>
-                                                    <li><a href="shop-grid-left-sidebar.html">Point</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop-grid-left-sidebar.html">Cellphones & Accessories<span class="lnr lnr-chevron-right"></span></a>
-                                        <ul class="cat-submenu">
-                                            <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>
-                                            <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shop-grid-left-sidebar.html">Top Item</a></li>
-                                    <li><a href="shop-grid-left-sidebar.html">Video Games Consoles</a></li>
-                                    <li><a href="shop-grid-left-sidebar.html">Business & Office</a></li>
-                                    <li><a href="shop-grid-left-sidebar.html">Headphones & Accessories</a></li>
-                                    <li><a href="shop-grid-left-sidebar.html">Quadcopters & Accessories</a></li>
-                                    <li><a href="shop-grid-left-sidebar.html">Network Devices</a></li>
-                                    <li class="category-item-parent hidden"><a href="shop-grid-left-sidebar.html">Smart Watches</a></li>
-                                    <li class="category-item-parent"><a class="more-btn" href="#">More Categories</a></li>
+{{--                                    <li><a href="shop-grid-left-sidebar.html">Audio & Home Theater <span class="lnr lnr-chevron-right"></span></a>--}}
+{{--                                        <ul class="cat-submenu">--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">Home Audio <span class="lnr lnr-chevron-right"></span></a>--}}
+{{--                                                <ul class="cat-submenu">--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>--}}
+{{--                                                </ul>--}}
+{{--                                            </li>--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">Blu-ray Disc Players</a></li>--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">Curved TVs<span class="lnr lnr-chevron-right"></span></a>--}}
+{{--                                                <ul class="cat-submenu">--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">CD Players & Turntables</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Home Theater Systems</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Receivers & Amplifiers</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Speakers</a></li>--}}
+{{--                                                    <li><a href="shop-grid-left-sidebar.html">Wireless  Audio</a></li>--}}
+{{--                                                </ul>--}}
+{{--                                            </li>--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">Streaming Media Players</a></li>--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">OLED TVs</a></li>--}}
+{{--                                            <li><a href="shop-grid-left-sidebar.html">LED & LCD TVs</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    </li>--}}
+                                    @foreach(getCategory() as $category)
+                                    <li><a href="{{"/$category->category_slug"}}">{{$category->category_name}}</a></li>
+                                    @endforeach
+{{--                                    <li class="category-item-parent"><a class="more-btn" href="#">More Categories</a></li>--}}
                                 </ul>
                             </nav>
                         </div>

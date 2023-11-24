@@ -1,8 +1,9 @@
-@extends('layouts.home')
+@extends('layouts.front-end')
 @section('content')
     <div class="slider-area">
         <div class="hero-slider-active slick-dot-style slider-arrow-style">
-            <div class="single-slider d-flex align-items-center" style="background-image: url('{{BASE_URL . "public"}}/assets/img/slider/slider1-home1.jpg');">
+            <div class="single-slider d-flex align-items-center"
+                 style="background-image: url('{{BASE_URL . "public"}}/assets/img/slider/slider1-home1.jpg');">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6 col-sm-8">
@@ -15,7 +16,8 @@
                     </div>
                 </div>
             </div>
-            <div class="single-slider d-flex align-items-center" style="background-image: url('{{BASE_URL . "public"}}/assets/img/slider/slider2-home1.jpg');">
+            <div class="single-slider d-flex align-items-center"
+                 style="background-image: url('{{BASE_URL . "public"}}/assets/img/slider/slider2-home1.jpg');">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6 col-sm-8">
@@ -42,11 +44,66 @@
                             </div>
                             <div class="flash-sale-active owl-carousel owl-arrow-style">
                                 <div class="flash-single-item">
+                                    @foreach($featureProducts as $product)
+                                    <div class="product-item mb-30">
+                                            <div class="product-thumb">
+                                                <a href="{{"/$product->slug"}}">
+                                                    <img src="{{$product->image}}" class="pri-img" alt="">
+                                                    <img src="{{$product->image}}" class="sec-img" alt="">
+                                                </a>
+                                                <div class="box-label">
+                                                    <div class="label-product label_new">
+                                                        <span>new</span>
+                                                    </div>
+                                                    @if($product->discount > 0)
+                                                        <div class="label-product label_sale">
+                                                            <span>{{($product->discount / $product->price)* 100}}%</span>
+                                                        </div>
+                                                    @endif
+                                                </div>
+                                                <div class="action-links">
+                                                    <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                    <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                                    <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                       data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-caption count-style">
+                                                <div class="manufacture-product">
+                                                    <p align="center"><strong>{{$product->category_name}}</strong></p>
+                                                </div>
+                                                <div class="product-name">
+                                                    <h4 align="center"><a href="{{"/$product->slug"}}">{{$product->name}}</a></h4>
+                                                </div>
+                                                <div class="ratings" align="center">
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                    <span><i class="lnr lnr-star"></i></span>
+                                                </div>
+                                                <div class="price-box" align="center">
+                                                <span class="regular-price"><span
+                                                            class="special-price">VNĐ {{number_format($product->price)}}</span></span>
+{{--                                                    <span class="old-price"><del>£90.00</del></span>--}}
+                                                </div>
+                                                <div class="product-countdown" data-countdown="{{$product->expired_at}}"></div>
+                                                <div style="display: flex;justify-content: center;"><button class="btn-cart" type="button">add to cart</button></div>
+
+                                            </div>
+
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                                <div class="flash-single-item">
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                     class="pri-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                     class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_new">
@@ -59,7 +116,8 @@
                                             <div class="action-links">
                                                 <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                   data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption count-style">
@@ -77,7 +135,8 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                             <div class="product-countdown" data-countdown="2023/12/01"></div>
@@ -87,8 +146,10 @@
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                     class="pri-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                     class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_new">
@@ -101,7 +162,8 @@
                                             <div class="action-links">
                                                 <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                   data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption count-style">
@@ -119,7 +181,8 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                             <div class="product-countdown" data-countdown="2023/12/01"></div>
@@ -131,8 +194,10 @@
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="sec-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                     class="pri-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                     class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_new">
@@ -145,7 +210,8 @@
                                             <div class="action-links">
                                                 <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                   data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption count-style">
@@ -163,7 +229,8 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                             <div class="product-countdown" data-countdown="2023/12/01"></div>
@@ -173,8 +240,10 @@
                                     <div class="product-item mb-30">
                                         <div class="product-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                     class="pri-img" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                     class="sec-img" alt="">
                                             </a>
                                             <div class="box-label">
                                                 <div class="label-product label_new">
@@ -187,7 +256,8 @@
                                             <div class="action-links">
                                                 <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                   data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-caption count-style">
@@ -205,93 +275,8 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
-                                                <span class="old-price"><del>£90.00</del></span>
-                                            </div>
-                                            <div class="product-countdown" data-countdown="2023/12/01"></div>
-                                            <button class="btn-cart" type="button">add to cart</button>
-                                        </div>
-                                    </div><!-- </div> end single item -->
-                                </div>
-                                <div class="flash-single-item">
-                                    <div class="product-item mb-30">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="sec-img" alt="">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="label-product label_new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="label-product label_sale">
-                                                    <span>-20%</span>
-                                                </div>
-                                            </div>
-                                            <div class="action-links">
-                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-caption count-style">
-                                            <div class="manufacture-product">
-                                                <p><a href="shop-grid-left-sidebar.html">apple</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h4><a href="product-details.html">jony XB10 Portable Speaker</a></h4>
-                                            </div>
-                                            <div class="ratings">
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span><i class="lnr lnr-star"></i></span>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
-                                                <span class="old-price"><del>£90.00</del></span>
-                                            </div>
-                                            <div class="product-countdown" data-countdown="2023/12/01"></div>
-                                            <button class="btn-cart" type="button">add to cart</button>
-                                        </div>
-                                    </div><!-- </div> end single item -->
-                                    <div class="product-item mb-30">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="pri-img" alt="">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="label-product label_new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="label-product label_sale">
-                                                    <span>-20%</span>
-                                                </div>
-                                            </div>
-                                            <div class="action-links">
-                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-caption count-style">
-                                            <div class="manufacture-product">
-                                                <p><a href="shop-grid-left-sidebar.html">apple</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h4><a href="product-details.html">jony XB10 Portable Speaker</a></h4>
-                                            </div>
-                                            <div class="ratings">
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                <span><i class="lnr lnr-star"></i></span>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                             <div class="product-countdown" data-countdown="2023/12/01"></div>
@@ -303,7 +288,8 @@
                         </div> <!--  end flash sale -->
                         <div class="sidebar-static-banner mb-40">
                             <div class="sidebar-static-thumb">
-                                <a href="#"><img src="{{BASE_URL . "public"}}/assets/img/banner/img-static-sidebar.jpg" alt=""></a>
+                                <a href="#"><img src="{{BASE_URL . "public"}}/assets/img/banner/img-static-sidebar.jpg"
+                                                 alt=""></a>
                             </div>
                         </div> <!--  end static banner -->
                         <div class="latest-product-sidebar mb-40">
@@ -314,48 +300,60 @@
                                 <div class="latest-single-slide">
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
@@ -364,48 +362,60 @@
                                 <div class="latest-single-slide">
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
                                     </div> <!--  end latest single item -->
                                     <div class="latest-single-item">
                                         <div class="latest-thumb">
-                                            <a href="product-details.html"><img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" alt=""></a>
+                                            <a href="product-details.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                        alt=""></a>
                                         </div>
                                         <div class="latest-pro-content">
                                             <h4><a href="product-details.html">Bose SoundLink Bluetooth Speaker</a></h4>
                                             <div class="price-box">
-                                                <span class="regular-price"><span class="special-price">£65.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£65.00</span></span>
                                                 <span class="old-price"><del>£90.00</del></span>
                                             </div>
                                         </div>
@@ -426,8 +436,10 @@
                                     </div>
                                     <div class="blogg-content">
                                         <span class="post-date">20 oct 2019</span>
-                                        <h5><a href="blog-details.html">London Fashion Week 360° Candy Rock & Royal Fashion Day</a></h5>
-                                        <p>Maria Denardo is the Fashion Director at theFashionSpot. Prior to joining tFS, she worked as...</p>
+                                        <h5><a href="blog-details.html">London Fashion Week 360° Candy Rock & Royal
+                                                Fashion Day</a></h5>
+                                        <p>Maria Denardo is the Fashion Director at theFashionSpot. Prior to joining
+                                            tFS, she worked as...</p>
                                     </div>
                                 </div>
                                 <div class="single-blogg-item">
@@ -438,8 +450,10 @@
                                     </div>
                                     <div class="blogg-content">
                                         <span class="post-date">20 oct 2019</span>
-                                        <h5><a href="blog-details.html">London Fashion Week 360° Candy Rock & Royal Fashion Day</a></h5>
-                                        <p>Maria Denardo is the Fashion Director at theFashionSpot. Prior to joining tFS, she worked as...</p>
+                                        <h5><a href="blog-details.html">London Fashion Week 360° Candy Rock & Royal
+                                                Fashion Day</a></h5>
+                                        <p>Maria Denardo is the Fashion Director at theFashionSpot. Prior to joining
+                                            tFS, she worked as...</p>
                                     </div>
                                 </div>
                             </div>
@@ -452,7 +466,8 @@
                                 <div class="testimonial-single-item">
                                     <div class="testimonial-avater">
                                         <div class="testimonial-thumb">
-                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial1.png" alt="">
+                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial1.png"
+                                                 alt="">
                                         </div>
                                         <div class="testimonial-author">
                                             <h6>Amber</h6>
@@ -467,14 +482,17 @@
                                     </div>
                                     <div class="testimonial-caption">
                                         <div class="testi-quote">
-                                            <a href="#"> Code, template and others are very good. The support has served me immediately and solved my problems when I need help. Are to be congratulated. Att Renan Andr..</a>
+                                            <a href="#"> Code, template and others are very good. The support has served
+                                                me immediately and solved my problems when I need help. Are to be
+                                                congratulated. Att Renan Andr..</a>
                                         </div>
                                     </div>
                                 </div> <!--  end single item -->
                                 <div class="testimonial-single-item">
                                     <div class="testimonial-avater">
                                         <div class="testimonial-thumb">
-                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial2.png" alt="">
+                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial2.png"
+                                                 alt="">
                                         </div>
                                         <div class="testimonial-author">
                                             <h6>Stefano</h6>
@@ -489,14 +507,17 @@
                                     </div>
                                     <div class="testimonial-caption">
                                         <div class="testi-quote">
-                                            <a href="#"> Code, template and others are very good. The support has served me immediately and solved my problems when I need help. Are to be congratulated. Att Renan Andr..</a>
+                                            <a href="#"> Code, template and others are very good. The support has served
+                                                me immediately and solved my problems when I need help. Are to be
+                                                congratulated. Att Renan Andr..</a>
                                         </div>
                                     </div>
                                 </div> <!--  end single item -->
                                 <div class="testimonial-single-item">
                                     <div class="testimonial-avater">
                                         <div class="testimonial-thumb">
-                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial1.png" alt="">
+                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial1.png"
+                                                 alt="">
                                         </div>
                                         <div class="testimonial-author">
                                             <h6>Amber</h6>
@@ -511,14 +532,17 @@
                                     </div>
                                     <div class="testimonial-caption">
                                         <div class="testi-quote">
-                                            <a href="#"> Code, template and others are very good. The support has served me immediately and solved my problems when I need help. Are to be congratulated. Att Renan Andr..</a>
+                                            <a href="#"> Code, template and others are very good. The support has served
+                                                me immediately and solved my problems when I need help. Are to be
+                                                congratulated. Att Renan Andr..</a>
                                         </div>
                                     </div>
                                 </div> <!--  end single item -->
                                 <div class="testimonial-single-item">
                                     <div class="testimonial-avater">
                                         <div class="testimonial-thumb">
-                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial2.png" alt="">
+                                            <img src="{{BASE_URL . "public"}}/assets/img/testimonial/testimonial2.png"
+                                                 alt="">
                                         </div>
                                         <div class="testimonial-author">
                                             <h6>Stefano</h6>
@@ -533,7 +557,9 @@
                                     </div>
                                     <div class="testimonial-caption">
                                         <div class="testi-quote">
-                                            <a href="#"> Code, template and others are very good. The support has served me immediately and solved my problems when I need help. Are to be congratulated. Att Renan Andr..</a>
+                                            <a href="#"> Code, template and others are very good. The support has served
+                                                me immediately and solved my problems when I need help. Are to be
+                                                congratulated. Att Renan Andr..</a>
                                         </div>
                                     </div>
                                 </div> <!--  end single item -->
@@ -552,7 +578,8 @@
                                             <div class="col">
                                                 <div class="feature-item">
                                                     <div class="feature-icon">
-                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper1.png" alt="">
+                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper1.png"
+                                                             alt="">
                                                     </div>
                                                     <div class="feature-content">
                                                         <h4>free shipping</h4>
@@ -563,7 +590,8 @@
                                             <div class="col">
                                                 <div class="feature-item">
                                                     <div class="feature-icon">
-                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper2.png" alt="">
+                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper2.png"
+                                                             alt="">
                                                     </div>
                                                     <div class="feature-content">
                                                         <h4>Support 24/7</h4>
@@ -574,7 +602,8 @@
                                             <div class="col">
                                                 <div class="feature-item">
                                                     <div class="feature-icon">
-                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper3.png" alt="">
+                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper3.png"
+                                                             alt="">
                                                     </div>
                                                     <div class="feature-content">
                                                         <h4>100% Money Back</h4>
@@ -585,7 +614,8 @@
                                             <div class="col">
                                                 <div class="feature-item">
                                                     <div class="feature-icon">
-                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper5.png" alt="">
+                                                        <img src="{{BASE_URL . "public"}}/assets/img/icon/wrapper5.png"
+                                                             alt="">
                                                     </div>
                                                     <div class="feature-content">
                                                         <h4>Payment Secure</h4>
@@ -608,288 +638,81 @@
                                     <div class="boxx-tab">
                                         <ul class="nav my-tab" role="tablist">
                                             <li role="presentation">
-                                                <button class="active" type="button" id="one-tab" data-bs-toggle="tab" data-bs-target="#one" role="tab" aria-controls="one" aria-selected="true">Camera, Photo & Video</button>
+                                                <button class="active" type="button" id="one-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#one" role="tab" aria-controls="one"
+                                                        aria-selected="true">Camera, Photo & Video
+                                                </button>
                                             </li>
                                             <li role="presentation">
-                                                <button data-bs-toggle="tab" type="button" id="two-tab" data-bs-toggle="tab" data-bs-target="#two" role="tab" aria-controls="two" aria-selected="false">Audio & Home Theater</button>
+                                                <button data-bs-toggle="tab" type="button" id="two-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#two" role="tab"
+                                                        aria-controls="two" aria-selected="false">Audio & Home Theater
+                                                </button>
                                             </li>
                                             <li role="presentation">
-                                                <button data-bs-toggle="tab" type="button" id="three-tab" data-bs-toggle="tab" data-bs-target="#three" role="tab" aria-controls="three" aria-selected="false">Cellphones & Accessories</button>
+                                                <button data-bs-toggle="tab" type="button" id="three-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#three" role="tab"
+                                                        aria-controls="three" aria-selected="false">Cellphones &
+                                                    Accessories
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                    <div class="tab-pane fade show active" id="one" role="tabpanel"
+                                         aria-labelledby="one-tab">
                                         <div class="product-gallary-wrapper">
                                             <div class="product-gallary-active2 owl-carousel owl-arrow-style product-spacing">
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_new">
-                                                                <span>new</span>
+                                                @foreach($products as $product)
+                                                    <div class="product-item">
+                                                        <div class="product-thumb">
+                                                            <a href="{{"/$product->slug"}}">
+                                                                <img src="{{$product->image}}" class="pri-img" alt=""
+                                                                     style="width: 90%;">
+                                                                <img src="{{$product->image}}" class="sec-img" alt=""
+                                                                     style="width: 90%">
+                                                            </a>
+                                                            <div class="box-label">
+                                                                <div class="label-product label_new">
+                                                                    <span>new</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="action-links">
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">apple</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price">£30.31</span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_new">
-                                                                <span>new</span>
+                                                        <div class="product-caption">
+                                                            <div class="manufacture-product">
+                                                                <p align="center">
+                                                                    <strong>{{$product->category_name}}</strong></p>
                                                             </div>
-                                                            <div class="label-product label_sale">
-                                                                <span>-10%</span>
+                                                            <div class="product-name">
+                                                                <h4 align="center"><a
+                                                                            href="{{"/$product->slug"}}">{{$product->name}}</a>
+                                                                </h4>
                                                             </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">jony</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price"><span class="special-price">£50.00</span></span>
-                                                            <span class="old-price"><del>£60.00</del></span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_new">
-                                                                <span>new</span>
+                                                            <div class="ratings" align="center">
+                                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                                <span class="yellow"><i class="lnr lnr-star"></i></span>
+                                                                <span><i class="lnr lnr-star"></i></span>
                                                             </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price">£46.31</span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_sale">
-                                                                <span>-10%</span>
+                                                            <div class="price-box" align="center">
+                                                                <span class="regular-price">VNĐ {{number_format($product->price)}}</span>
                                                             </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <div style="display: flex; justify-content: center"><button class="btn-cart" type="button">add to cart</button></div>
+
                                                         </div>
                                                     </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">toshiba</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price">£78.31</span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_sale">
-                                                                <span>-5%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">hitachi</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price">£90.31</span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_new">
-                                                                <span>new</span>
-                                                            </div>
-                                                            <div class="label-product label_sale">
-                                                                <span>-20%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">apple</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                            <span class="yellow"><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price"><span class="special-price">£65.00</span></span>
-                                                            <span class="old-price"><del>£90.00</del></span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div> <!-- </div> end single item -->
-                                                <div class="product-item">
-                                                    <div class="product-thumb">
-                                                        <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
-                                                        </a>
-                                                        <div class="box-label">
-                                                            <div class="label-product label_sale">
-                                                                <span>-7%</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
-                                                            <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-caption">
-                                                        <div class="manufacture-product">
-                                                            <p><a href="shop-grid-left-sidebar.html">nokia</a></p>
-                                                        </div>
-                                                        <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
-                                                        </div>
-                                                        <div class="ratings">
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                            <span><i class="lnr lnr-star"></i></span>
-                                                        </div>
-                                                        <div class="price-box">
-                                                            <span class="regular-price">£78.31</span>
-                                                        </div>
-                                                        <button class="btn-cart" type="button">add to cart</button>
-                                                    </div>
-                                                </div><!-- </div> end single item -->
+                                                @endforeach
+
                                             </div>
                                         </div>
                                     </div>
@@ -899,8 +722,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -908,9 +733,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -918,7 +745,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -936,8 +764,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -945,9 +775,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -955,7 +787,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -973,8 +806,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -985,9 +820,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -995,7 +832,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">lg</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1014,8 +852,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -1023,9 +863,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1033,7 +875,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1051,8 +894,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1060,9 +905,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1070,7 +917,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">hitachi</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -1088,8 +936,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1100,9 +950,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1110,7 +962,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1129,8 +982,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1138,9 +993,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1148,7 +1005,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">jamuna</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1172,8 +1030,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -1181,9 +1041,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1191,7 +1053,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -1209,8 +1072,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -1218,9 +1083,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1228,7 +1095,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -1246,8 +1114,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1258,9 +1128,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1268,7 +1140,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1287,8 +1160,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_sale">
@@ -1296,9 +1171,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1306,7 +1183,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1324,8 +1202,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1333,9 +1213,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1343,7 +1225,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span><i class="lnr lnr-star"></i></span>
@@ -1361,8 +1244,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1373,9 +1258,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1383,7 +1270,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">hitachi</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1402,8 +1290,10 @@
                                                 <div class="product-item">
                                                     <div class="product-thumb">
                                                         <a href="product-details.html">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="pri-img" alt="">
-                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" class="sec-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                 class="pri-img" alt="">
+                                                            <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                                 class="sec-img" alt="">
                                                         </a>
                                                         <div class="box-label">
                                                             <div class="label-product label_new">
@@ -1411,9 +1301,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="action-links">
-                                                            <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                            <a href="#" title="Wishlist"><i
+                                                                        class="lnr lnr-heart"></i></a>
                                                             <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                            <a href="#" title="Quick view" data-bs-target="#quickk_view"
+                                                               data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="product-caption">
@@ -1421,7 +1313,8 @@
                                                             <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                         </div>
                                                         <div class="product-name">
-                                                            <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                            <h4><a href="product-details.html">jony XB10 Portable
+                                                                    Wireless Speaker</a></h4>
                                                         </div>
                                                         <div class="ratings">
                                                             <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1450,17 +1343,23 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4">
                                         <div class="single-banner-statics">
-                                            <a href="shop-grid-left-sidebar.html"><img src="{{BASE_URL . "public"}}/assets/img/banner/img1-top-sinrato1.jpg" alt=""></a>
+                                            <a href="shop-grid-left-sidebar.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/banner/img1-top-sinrato1.jpg"
+                                                        alt=""></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
                                         <div class="single-banner-statics">
-                                            <a href="shop-grid-left-sidebar.html"><img src="{{BASE_URL . "public"}}/assets/img/banner/img2-top-sinrato1.jpg" alt=""></a>
+                                            <a href="shop-grid-left-sidebar.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/banner/img2-top-sinrato1.jpg"
+                                                        alt=""></a>
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-4">
                                         <div class="single-banner-statics">
-                                            <a href="shop-grid-left-sidebar.html"><img src="{{BASE_URL . "public"}}/assets/img/banner/img3-top-sinrato1.jpg" alt=""></a>
+                                            <a href="shop-grid-left-sidebar.html"><img
+                                                        src="{{BASE_URL . "public"}}/assets/img/banner/img3-top-sinrato1.jpg"
+                                                        alt=""></a>
                                         </div>
                                     </div>
                                 </div>
@@ -1481,7 +1380,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                <h4><a href="product-details.html">jony XB10 Portable Wireless
+                                                        Speaker</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1491,13 +1391,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£30.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£30.00</span></span>
                                                 <span class="old-price"><del>£450.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1507,7 +1409,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">Walton</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">Koss Porta Pro On Ear  Headphones </a></h4>
+                                                <h4><a href="product-details.html">Koss Porta Pro On Ear Headphones </a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1522,7 +1425,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1532,7 +1436,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">Jamuna</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a></h4>
+                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1542,13 +1447,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£40.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£40.00</span></span>
                                                 <span class="old-price"><del>£60.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1558,7 +1465,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">jony KD55X72 55-Inch  4k Ultra HD</a></h4>
+                                                <h4><a href="product-details.html">jony KD55X72 55-Inch 4k Ultra HD</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1573,7 +1481,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1595,7 +1504,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a></h4>
+                                                <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1605,13 +1515,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£30.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£30.00</span></span>
                                                 <span class="old-price"><del>£450.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1621,7 +1533,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a></h4>
+                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1636,7 +1549,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1646,7 +1560,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">Marshall Portable  Bluetooth Speaker</a></h4>
+                                                <h4><a href="product-details.html">Marshall Portable Bluetooth
+                                                        Speaker</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1656,13 +1571,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£40.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£40.00</span></span>
                                                 <span class="old-price"><del>£60.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1672,7 +1589,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                <h4><a href="product-details.html">jony XB10 Portable Wireless
+                                                        Speaker</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1687,7 +1605,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1709,7 +1628,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a></h4>
+                                                <h4><a href="product-details.html">JBL Flip 3 Portable Bluetooth</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1719,13 +1639,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£30.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£30.00</span></span>
                                                 <span class="old-price"><del>£450.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1735,7 +1657,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">Marshall Portable  Bluetooth Speaker </a></h4>
+                                                <h4><a href="product-details.html">Marshall Portable Bluetooth
+                                                        Speaker </a></h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1750,7 +1673,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1760,7 +1684,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">sumsang</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a></h4>
+                                                <h4><a href="product-details.html">Beats EP Wired Headphone-Black</a>
+                                                </h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1770,13 +1695,15 @@
                                                 <span><i class="lnr lnr-star"></i></span>
                                             </div>
                                             <div class="price-box-module">
-                                                <span class="regular-price"><span class="special-price">£40.00</span></span>
+                                                <span class="regular-price"><span
+                                                            class="special-price">£40.00</span></span>
                                                 <span class="old-price"><del>£60.00</del></span>
                                             </div>
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1786,7 +1713,8 @@
                                                 <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                             </div>
                                             <div class="product-module-name">
-                                                <h4><a href="product-details.html">jony XB10 Portable  Wireless Speaker</a></h4>
+                                                <h4><a href="product-details.html">jony XB10 Portable Wireless
+                                                        Speaker</a></h4>
                                             </div>
                                             <div class="ratings">
                                                 <span><i class="lnr lnr-star"></i></span>
@@ -1801,7 +1729,8 @@
                                         </div>
                                         <div class="product-module-thumb">
                                             <a href="product-details.html">
-                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" alt="">
+                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                     alt="">
                                             </a>
                                         </div>
                                     </div> <!-- end single item -->
@@ -1814,7 +1743,9 @@
                         <div class="banner-statics">
                             <div class="container-fluid plr-none">
                                 <div class="single-banner-statics">
-                                    <a href="shop-grid-left-sidebar.html"><img src="{{BASE_URL . "public"}}/assets/img/banner/img-bottom-sinrato1.jpg" alt=""></a>
+                                    <a href="shop-grid-left-sidebar.html"><img
+                                                src="{{BASE_URL . "public"}}/assets/img/banner/img-bottom-sinrato1.jpg"
+                                                alt=""></a>
                                 </div>
                             </div>
                         </div>
@@ -1828,27 +1759,42 @@
                                     <div class="boxx-tab">
                                         <ul class="nav my-tab" role="tablist">
                                             <li role="presentation">
-                                                <button class="active" type="button" id="module-one-tab" data-bs-toggle="tab" data-bs-target="#module-one" role="tab" aria-controls="module-one" aria-selected="true">Featured Products</button>
+                                                <button class="active" type="button" id="module-one-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#module-one" role="tab"
+                                                        aria-controls="module-one" aria-selected="true">Featured
+                                                    Products
+                                                </button>
                                             </li>
                                             <li role="presentation">
-                                                <button data-bs-toggle="tab" type="button" id="module-two-tab" data-bs-toggle="tab" data-bs-target="#module-two" role="tab" aria-controls="module-two" aria-selected="false">On sale Products</button>
+                                                <button data-bs-toggle="tab" type="button" id="module-two-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#module-two" role="tab"
+                                                        aria-controls="module-two" aria-selected="false">On sale
+                                                    Products
+                                                </button>
                                             </li>
                                             <li role="presentation">
-                                                <button data-bs-toggle="tab" type="button" id="module-three-tab" data-bs-toggle="tab" data-bs-target="#module-three" role="tab" aria-controls="module-three" aria-selected="false">Best sellers Products</button>
+                                                <button data-bs-toggle="tab" type="button" id="module-three-tab"
+                                                        data-bs-toggle="tab" data-bs-target="#module-three" role="tab"
+                                                        aria-controls="module-three" aria-selected="false">Best sellers
+                                                    Products
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="module-one" role="tabpanel" aria-labelledby="module-one-tab">
+                                    <div class="tab-pane fade show active" id="module-one" role="tabpanel"
+                                         aria-labelledby="module-one-tab">
                                         <div class="module-four-wrapper">
                                             <div class="pro-module3-active owl-carousel owl-arrow-style module-three-spacing2">
                                                 <div class="module3-single-item">
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -1856,9 +1802,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -1866,7 +1815,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">office uses  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">office uses Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1884,8 +1834,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -1893,9 +1845,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -1903,7 +1858,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">sumsang Portable headphone</a></h4>
+                                                                <h4><a href="product-details.html">sumsang Portable
+                                                                        headphone</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1923,8 +1879,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -1935,9 +1893,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -1945,7 +1906,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless printer</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        printer</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -1964,8 +1926,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -1973,9 +1937,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -1983,7 +1950,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton smart watch blutooth</a></h4>
+                                                                <h4><a href="product-details.html">walton smart watch
+                                                                        blutooth</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2003,8 +1971,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2015,9 +1985,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2025,7 +1998,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">Nokia</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Nokia smart phone with rom</a></h4>
+                                                                <h4><a href="product-details.html">Nokia smart phone
+                                                                        with rom</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2044,8 +2018,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2053,9 +2029,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2063,7 +2042,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton Portable  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">walton Portable
+                                                                        Wireless Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2083,8 +2063,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2092,9 +2074,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2102,7 +2087,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jamuna XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jamuna XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2120,8 +2106,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2132,9 +2120,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2142,7 +2133,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2163,8 +2155,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -2172,9 +2166,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2182,7 +2179,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB memory</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB
+                                                                        memory</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2200,8 +2198,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2209,9 +2209,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2219,7 +2222,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2239,8 +2243,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -2248,9 +2254,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2258,7 +2267,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPad with Retina Display</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPad with
+                                                                        Retina Display</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2276,8 +2286,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2285,9 +2297,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2295,7 +2310,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Amazon Cloud Security Camera</a></h4>
+                                                                <h4><a href="product-details.html">Amazon Cloud Security
+                                                                        Camera</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2314,15 +2330,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="module-two" role="tabpanel" aria-labelledby="module-two-tab">
+                                    <div class="tab-pane" id="module-two" role="tabpanel"
+                                         aria-labelledby="module-two-tab">
                                         <div class="module-four-wrapper">
                                             <div class="pro-module3-active owl-carousel owl-arrow-style module-three-spacing2">
                                                 <div class="module3-single-item">
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -2330,9 +2349,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2340,7 +2362,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPad with Retina Display</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPad with
+                                                                        Retina Display</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2358,8 +2381,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2370,9 +2395,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2380,7 +2408,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless printer</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        printer</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2401,8 +2430,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2410,9 +2441,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2420,7 +2454,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Amazon Cloud Security Camera</a></h4>
+                                                                <h4><a href="product-details.html">Amazon Cloud Security
+                                                                        Camera</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2438,8 +2473,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2447,9 +2484,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2457,7 +2497,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton smart watch blutooth</a></h4>
+                                                                <h4><a href="product-details.html">walton smart watch
+                                                                        blutooth</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2477,8 +2518,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2489,9 +2532,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2499,7 +2545,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2518,8 +2565,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2527,9 +2576,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2537,7 +2589,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton Portable  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">walton Portable
+                                                                        Wireless Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2557,8 +2610,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -2566,9 +2621,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2576,7 +2634,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">office uses  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">office uses Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2594,8 +2653,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2603,9 +2664,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2613,7 +2677,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">sumsang Portable headphone</a></h4>
+                                                                <h4><a href="product-details.html">sumsang Portable
+                                                                        headphone</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2633,8 +2698,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2642,9 +2709,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2652,7 +2722,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jamuna XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jamuna XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2670,8 +2741,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2682,9 +2755,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2692,7 +2768,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">Nokia</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Nokia smart phone with rom</a></h4>
+                                                                <h4><a href="product-details.html">Nokia smart phone
+                                                                        with rom</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2713,8 +2790,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -2722,9 +2801,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2732,7 +2814,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB memory</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB
+                                                                        memory</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2750,8 +2833,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2759,9 +2844,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2769,7 +2857,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2788,15 +2877,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="module-three" role="tabpanel" aria-labelledby="module-three-tab">
+                                    <div class="tab-pane" id="module-three" role="tabpanel"
+                                         aria-labelledby="module-three-tab">
                                         <div class="module-four-wrapper">
                                             <div class="pro-module3-active owl-carousel owl-arrow-style module-three-spacing2">
                                                 <div class="module3-single-item">
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-14.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-1.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2804,9 +2896,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2814,7 +2909,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jamuna XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jamuna XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2832,8 +2928,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2844,9 +2942,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2854,7 +2955,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless printer</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        printer</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2875,8 +2977,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-10.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2887,9 +2991,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2897,7 +3004,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">Nokia</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Nokia smart phone with rom</a></h4>
+                                                                <h4><a href="product-details.html">Nokia smart phone
+                                                                        with rom</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2916,8 +3024,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-13.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2925,9 +3035,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2935,7 +3048,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton Portable  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">walton Portable
+                                                                        Wireless Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2955,8 +3069,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-4.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -2964,9 +3080,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -2974,7 +3093,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">jony</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">sumsang Portable headphone</a></h4>
+                                                                <h4><a href="product-details.html">sumsang Portable
+                                                                        headphone</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -2992,8 +3112,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-5.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -3004,9 +3126,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3014,7 +3139,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">walton</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3035,8 +3161,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-3.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -3044,9 +3172,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3054,7 +3185,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">office uses  Wireless Speaker</a></h4>
+                                                                <h4><a href="product-details.html">office uses Wireless
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3072,8 +3204,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-7.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -3081,9 +3215,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3091,7 +3228,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB memory</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPhone SE 16GB
+                                                                        memory</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3111,8 +3249,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-11.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-6.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -3120,9 +3260,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3130,7 +3273,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">jony XB10 Portable  Speaker</a></h4>
+                                                                <h4><a href="product-details.html">jony XB10 Portable
+                                                                        Speaker</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3148,8 +3292,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -3157,9 +3303,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3167,7 +3316,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">walton smart watch blutooth</a></h4>
+                                                                <h4><a href="product-details.html">walton smart watch
+                                                                        blutooth</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3187,8 +3337,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-8.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-2.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_sale">
@@ -3196,9 +3348,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3206,7 +3361,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Apple iPad with Retina Display</a></h4>
+                                                                <h4><a href="product-details.html">Apple iPad with
+                                                                        Retina Display</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3224,8 +3380,10 @@
                                                     <div class="product-item mb-30">
                                                         <div class="product-thumb">
                                                             <a href="product-details.html">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg" class="pri-img" alt="">
-                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg" class="sec-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-9.jpg"
+                                                                     class="pri-img" alt="">
+                                                                <img src="{{BASE_URL . "public"}}/assets/img/product/product-12.jpg"
+                                                                     class="sec-img" alt="">
                                                             </a>
                                                             <div class="box-label">
                                                                 <div class="label-product label_new">
@@ -3233,9 +3391,12 @@
                                                                 </div>
                                                             </div>
                                                             <div class="action-links">
-                                                                <a href="#" title="Wishlist"><i class="lnr lnr-heart"></i></a>
+                                                                <a href="#" title="Wishlist"><i
+                                                                            class="lnr lnr-heart"></i></a>
                                                                 <a href="#" title="Compare"><i class="lnr lnr-sync"></i></a>
-                                                                <a href="#" title="Quick view" data-bs-target="#quickk_view" data-bs-toggle="modal"><i class="lnr lnr-magnifier"></i></a>
+                                                                <a href="#" title="Quick view"
+                                                                   data-bs-target="#quickk_view" data-bs-toggle="modal"><i
+                                                                            class="lnr lnr-magnifier"></i></a>
                                                             </div>
                                                         </div>
                                                         <div class="product-caption">
@@ -3243,7 +3404,8 @@
                                                                 <p><a href="shop-grid-left-sidebar.html">apple</a></p>
                                                             </div>
                                                             <div class="product-name">
-                                                                <h4><a href="product-details.html">Amazon Cloud Security Camera</a></h4>
+                                                                <h4><a href="product-details.html">Amazon Cloud Security
+                                                                        Camera</a></h4>
                                                             </div>
                                                             <div class="ratings">
                                                                 <span class="yellow"><i class="lnr lnr-star"></i></span>
@@ -3278,11 +3440,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img7.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img7.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Audio Theater</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Audio Theater</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Home Audio</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Curved TVs</a></li>
@@ -3295,11 +3458,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img8.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img8.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Network Devices</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Network Devices</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Bridge</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Hub</a></li>
@@ -3312,11 +3476,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img9.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img9.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Business & Office</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Business & Office</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Caculator</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Ink & Toner</a></li>
@@ -3329,11 +3494,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img10.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img10.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Camera & Video</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Camera & Video</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Mirrorless camera</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Sequirity camera</a></li>
@@ -3346,11 +3512,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img4.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img4.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Laptop & Computer</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Laptop & Computer</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Laptop</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Tablets</a></li>
@@ -3363,11 +3530,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img6.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img6.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Laptop & Computer</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Laptop & Computer</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Components</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Tablets</a></li>
@@ -3380,11 +3548,12 @@
                                         <div class="featured-home2-single-item">
                                             <div class="featured-home2-thumb">
                                                 <a href="shop-grid-left-sidebar.html">
-                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img10.jpg" alt="">
+                                                    <img src="{{BASE_URL . "public"}}/assets/img/product/pro-layout-img10.jpg"
+                                                         alt="">
                                                 </a>
                                             </div>
                                             <div class="featured-home2-conteny">
-                                                <h4> <a href="shop-grid-left-sidebar.html">Camera & Video</a> </h4>
+                                                <h4><a href="shop-grid-left-sidebar.html">Camera & Video</a></h4>
                                                 <ul class="sub-featured-categories">
                                                     <li><a href="shop-grid-left-sidebar.html">Mirrorless camera</a></li>
                                                     <li><a href="shop-grid-left-sidebar.html">Sequirity camera</a></li>

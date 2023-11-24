@@ -3,23 +3,28 @@
 namespace App\Controllers;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    protected $category;
+    private $category;
+    private $product;
+
     public function __construct()
     {
         $this->category = new Category();
+        $this->product  = new Product();
     }
     public function home(){
-        return $this->view('home');
+        $products = $this->product->list();
+        $category = $this->category->list();
+        $featureProducts = $this->product->featureProduct();
+        return $this->view('home',compact('products','category','featureProducts'));
     }
 
-    public function test()
-    {
-        $category = $this->category->delete();
-        dd($category);
-        return $this->view('abc',compact('abc'));
-    }
+//    public function test()
+//    {
+//        $category = $this->category->all();
+//        dd($category);
+//        return $this->view('abc',compact('abc'));
+//    }
 }
