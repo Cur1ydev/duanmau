@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-class Category extends BaseModel
+class Comment extends BaseModel
 {
-    private $table = 'category';
+    private $table = "comments";
     private $model;
 
     public function __construct()
@@ -21,11 +21,13 @@ class Category extends BaseModel
             return $throwable->getMessage();
         }
     }
-    public function getById($id){
+
+    public function store($comment, $userId, $productId, $parentId = 0)
+    {
         try {
-            $sql = "select * from $this->table where id= '$id'";
-            return getOne($sql,$this->model);
-        }catch (\Throwable $throwable) {
+            $sql = "insert into $this->table(comment,user_id,product_id,parent_id,created_at) values(?,?,?,?,?)";
+            return insertTable($sql, $this->model, [$comment, $userId, $productId, $parentId, date('Y-m-d H:i:s')]);
+        } catch (\Throwable $throwable) {
             return $throwable->getMessage();
         }
     }

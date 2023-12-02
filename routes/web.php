@@ -1,6 +1,9 @@
 <?php
 
 use App\Controllers\HomeController;
+use App\Controllers\ProductController;
+use App\Controllers\UserController;
+use App\Controllers\CommentController;
 use Phroute\Phroute\Dispatcher;
 use Phroute\Phroute\RouteCollector;
 
@@ -9,6 +12,14 @@ $url = !isset($_GET['url']) ? '/' : $_GET['url'];
 
 $route->get('/',[HomeController::class,'home']);
 $route->get('test',[HomeController::class,'test']);
+$route->get('search', [ProductController::class, 'search']);
+$route->get('product/{slug}', [ProductController::class, 'detail']);
+$route->get('my-account', [UserController::class, 'getUser']);
+$route->get('login',[UserController::class,'login']);
+$route->post('login',[UserController::class,'login']);
+$route->get('logout',[UserController::class,'logout']);
+$route->post('comment',[CommentController::class,'comment']);
+$route->get('category/{slug}',[ProductController::class,'category']);
 $route->group(['prefix' => 'admin'],function ($rt){
     $rt->get('/',function (){
         return 'day la trang admin';

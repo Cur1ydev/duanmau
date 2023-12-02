@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-class Category extends BaseModel
+class User
 {
-    private $table = 'category';
     private $model;
+    private $table = 'user';
 
     public function __construct()
     {
@@ -15,17 +15,20 @@ class Category extends BaseModel
     public function list()
     {
         try {
-            $sql = "select * from " . $this->table;
+            $sql = "select * from $this->table";
             return getAll($sql, $this->model);
         } catch (\Throwable $throwable) {
             return $throwable->getMessage();
         }
+
     }
-    public function getById($id){
+
+    public function getUser($id)
+    {
         try {
-            $sql = "select * from $this->table where id= '$id'";
-            return getOne($sql,$this->model);
-        }catch (\Throwable $throwable) {
+            $sql = "select * from $this->table where id= ?";
+            return getOne($sql, $this->model, [$id]);
+        } catch (\Throwable $throwable) {
             return $throwable->getMessage();
         }
     }

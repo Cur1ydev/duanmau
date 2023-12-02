@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 if (!function_exists('getRequest')) {
     function getRequest()
@@ -17,10 +17,10 @@ if (!function_exists('getAll')) {
     }
 }
 if (!function_exists('getOne')) {
-    function getOne($sql, $model)
+    function getOne($sql, $model, $value = null)
     {
         $model->setQuery($sql);
-        return $model->loadRow();
+        return $model->loadRow($value);
     }
 }
 if (!function_exists('insertTable')) {
@@ -49,5 +49,24 @@ if (!function_exists('getCategory')) {
     {
         $category = new Category();
         return $category->list();
+    }
+}
+if (!function_exists('redirect')) {
+    function redirect($url)
+    {
+        header('Location:' . $url);
+    }
+}
+if (!function_exists('getSession')) {
+    function getSession()
+    {
+        return $_SESSION['username'] ?? false;
+    }
+}
+if (!function_exists('back')) {
+    function back()
+    {
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit();
     }
 }

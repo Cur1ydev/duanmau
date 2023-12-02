@@ -18,7 +18,8 @@ class HomeController extends Controller
         $products = $this->product->list();
         $category = $this->category->list();
         $featureProducts = $this->product->featureProduct();
-        return $this->view('home',compact('products','category','featureProducts'));
+        $mostView = $this->product->mostView();
+        return $this->view('home',compact('products','category','featureProducts','mostView'));
     }
 
 //    public function test()
