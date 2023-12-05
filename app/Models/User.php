@@ -18,7 +18,7 @@ class User
             $sql = "select * from $this->table";
             return getAll($sql, $this->model);
         } catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
         }
 
     }
@@ -29,7 +29,15 @@ class User
             $sql = "select * from $this->table where id= ?";
             return getOne($sql, $this->model, [$id]);
         } catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
+        }
+    }
+    public function store($username,$email,$password){
+        try {
+            $sql = "insert into  $this->table(username,email,password) values(?,?,?)";
+            return insertTable($sql,$this->model,[$username,$email,$password]);
+        }catch (\Throwable $throwable){
+            dd($throwable->getMessage());
         }
     }
 }

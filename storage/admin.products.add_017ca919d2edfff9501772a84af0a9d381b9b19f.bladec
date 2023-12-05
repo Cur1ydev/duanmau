@@ -1,0 +1,140 @@
+<?php $_shouldextend[1]=1; ?>
+<?php $this->startSection('content'); ?>
+ <div class="page-body">
+
+ <!-- New Product Add Start -->
+ <div class="container-fluid">
+ <div class="row">
+ <div class="col-12">
+ <div class="row">
+ <div class="col-sm-8 m-auto">
+ <div class="card">
+ <div class="card-body">
+ <div class="card-header-2">
+ <h5>Thêm mới</h5>
+ </div>
+ <ul>
+ <?php $__currentLoopData = $errors; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $error): $loop = $this->incrementLoopIndices();  ?>
+ <li style="color: red" align="center"><?php echo \htmlentities($error??'', ENT_QUOTES, 'UTF-8', false); ?></li>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </ul>
+
+ <form class="theme-form theme-form-2 mega-form" action="" method="post">
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Tên sản phẩm</label>
+ <div class="col-sm-9">
+ <input class="form-control" type="text" name="name" value="<?php echo \htmlentities($name??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ placeholder="Product Name">
+ </div>
+ </div>
+
+ <div class="mb-4 row align-items-center">
+ <label class="col-sm-3 col-form-label form-label-title">Danh mục</label>
+ <div class="col-sm-9">
+ <select class="js-example-basic-single w-100" name="category_id">
+ <?php $__currentLoopData = $category; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $ct): $loop = $this->incrementLoopIndices();  ?>
+ <option value="<?php echo \htmlentities($ct->id??'', ENT_QUOTES, 'UTF-8', false); ?>" <?php echo \htmlentities($ct->id == $categoryId ? 'selected':''??'', ENT_QUOTES, 'UTF-8', false); ?>><?php echo \htmlentities($ct->category_name??'', ENT_QUOTES, 'UTF-8', false); ?></option>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </select>
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Giá</label>
+ <div class="col-sm-9">
+ <input class="form-control" name="price" type="number"
+ value="<?php echo \htmlentities($price??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ placeholder="Giá">
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Giảm giá</label>
+ <div class="col-sm-9">
+ <input class="form-control" name="discount" type="number"
+ value="<?php echo \htmlentities(empty($discount) ? 0 : $discount??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ placeholder="Giảm giá">
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Đường dẫn ảnh</label>
+ <div class="col-sm-9">
+ <input class="form-control" name="image" type="text" value="<?php echo \htmlentities($img??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ placeholder="Đường dẫn ảnh(Link)">
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="col-sm-3 col-form-label form-label-title">Sản phẩm nổi
+ bật</label>
+ <div class="col-sm-9">
+ <select name="feature" class="js-example-basic-single w-100">
+ <option value="1" <?php echo \htmlentities($feature == 1 ?'selected':''??'', ENT_QUOTES, 'UTF-8', false); ?>>Có</option>
+ <option value="0" <?php echo \htmlentities($feature == 0 ?'selected':''??'', ENT_QUOTES, 'UTF-8', false); ?>>Không</option>
+ </select>
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="col-sm-3 col-form-label form-label-title">Trạng thái</label>
+ <div class="col-sm-9">
+ <select name="status" class="js-example-basic-single w-100">
+ <option value="1" <?php echo \htmlentities($status == 1 ?'selected':''??'', ENT_QUOTES, 'UTF-8', false); ?>>Còn hàng</option>
+ <option value="0" <?php echo \htmlentities($status == 0 ?'selected':''??'', ENT_QUOTES, 'UTF-8', false); ?>>Hết hàng</option>
+ </select>
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Ngày hết hạn giảm giá (Áp dụng
+ cho sản phẩm nổi bật)</label>
+ <div class="col-sm-9">
+ <input class="form-control" name="expried_at" type="date" value="<?php echo \htmlentities($exprired??'', ENT_QUOTES, 'UTF-8', false); ?>">
+ </div>
+ </div>
+ <div class="mb-4 row align-items-center">
+ <label class="form-label-title col-sm-3 mb-0">Mô tả</label>
+ <div class="col-sm-9">
+ <input class="form-control" name="description" type="text" value="<?php echo \htmlentities($description??'', ENT_QUOTES, 'UTF-8', false); ?>"
+ placeholder="">
+ </div>
+ </div>
+ <button class="btn ms-auto theme-bg-color text-white">Lưu</button>
+ </form>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <!-- New Product Add End -->
+
+ <!-- footer Start -->
+ <div class="container-fluid">
+ <footer class="footer">
+ <div class="row">
+ <div class="col-md-12 footer-copyright text-center">
+ <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+ </div>
+ </div>
+ </footer>
+ </div>
+ <!-- footer En -->
+ </div>
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog  modal-dialog-centered">
+ <div class="modal-content">
+ <div class="modal-body">
+ <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+ <p>Are you sure you want to log out?</p>
+ <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+ <div class="button-box">
+ <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+ <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.admin'); } ?>

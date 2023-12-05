@@ -18,7 +18,7 @@ class Comment extends BaseModel
             $sql = "select * from " . $this->table;
             return getAll($sql, $this->model);
         } catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
         }
     }
 
@@ -28,7 +28,7 @@ class Comment extends BaseModel
             $sql = "insert into $this->table(comment,user_id,product_id,parent_id,created_at) values(?,?,?,?,?)";
             return insertTable($sql, $this->model, [$comment, $userId, $productId, $parentId, date('Y-m-d H:i:s')]);
         } catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
         }
     }
 }

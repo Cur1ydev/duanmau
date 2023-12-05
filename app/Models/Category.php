@@ -18,7 +18,7 @@ class Category extends BaseModel
             $sql = "select * from " . $this->table;
             return getAll($sql, $this->model);
         } catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
         }
     }
     public function getById($id){
@@ -26,7 +26,35 @@ class Category extends BaseModel
             $sql = "select * from $this->table where id= '$id'";
             return getOne($sql,$this->model);
         }catch (\Throwable $throwable) {
-            return $throwable->getMessage();
+            dd($throwable->getMessage());
+        }
+    }
+
+    public function store($name, $slug, $description, $status)
+    {
+        try {
+            $sql = "insert into $this->table(category_name,category_slug,category_description,category_status) values(?,?,?,?)";
+            return insertTable($sql, $this->model, [$name, $slug, $description, $status]);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+
+    public function update($name, $slug, $description, $status, $id)
+    {
+        try {
+            $sql = "update $this->table set category_name = ?,category_slug=?,category_description=?,category_status=? where id= ?";
+            return insertTable($sql, $this->model, [$name, $slug, $description, $status, $id]);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+    public function delete($id){
+        try {
+            $sql = "delete from $this->table where id= ?";
+            return deleteTable($sql,$this->model,$id);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
         }
     }
 }

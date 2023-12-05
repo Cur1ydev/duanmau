@@ -168,14 +168,31 @@
                                                         <div class="form-group row mb-3">
                                                             <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Địa chỉ Email</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="email" value="{{$user->email}}" disabled required>
+                                                                <input type="text" class="form-control" value="{{$user->email}}" disabled required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group row mb-3">
                                                             <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Quyền</label>
                                                             <div class="col-12 col-sm-12 col-md-8 col-lg-6">
-                                                                <input type="text" class="form-control" id="email" value="{{$user->role_id == 0 ? 'Admin': 'Nhân viên'}}" disabled required>
+                                                                <input type="text" class="form-control" value="{{$user->role_id == 0 ? 'Admin': 'Nhân viên'}}" disabled required>
                                                             </div>
+                                                        </div>
+                                                        <div class="form-group row mb-3">
+                                                            <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Mật khẩu cũ</label>
+                                                            <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                                                                <input type="password" class="form-control" class="old-pass" name="password" value="123">
+                                                                <button class="pass-show-btn" type="button">Show</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row mb-3">
+                                                            <label for="email" class="col-12 col-sm-12 col-md-4 col-lg-3 col-form-label">Mật khẩu mới</label>
+                                                            <div class="col-12 col-sm-12 col-md-8 col-lg-6">
+                                                                <input type="password" class="form-control"  class="new-pass" name="password">
+                                                                <button class="pass-show-btn" type="button">Show</button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="register-box d-flex justify-content-center mt-20">
+                                                            <button type="submit" id="btn-changepassword" class="btn btn-secondary">Lưu</button>
                                                         </div>
                                                     </form>
                                                 </div>

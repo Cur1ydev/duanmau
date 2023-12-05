@@ -33,6 +33,13 @@
                                     </div>
                                 </div>
                             </div> <!-- end of row -->
+                            @if(count($errors) > 0 )
+                                <ul >
+                                    @foreach($errors as $error)
+                                        <li style="color: red" align="center">{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            @endif
                             <div class="row">
                                 <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3">
                                     <div class="login-form">
@@ -40,13 +47,13 @@
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="email" class="col-12 col-sm-12 col-md-4 col-form-label">Email address</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" required>
+                                                    <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{$email}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row align-items-center mb-4">
                                                 <label for="c-password" class="col-12 col-sm-12 col-md-4 col-form-label">Password</label>
                                                 <div class="col-12 col-sm-12 col-md-8">
-                                                    <input type="password" class="form-control" name="password" id="c-password" placeholder="Password" required>
+                                                    <input type="password" class="form-control" name="password" id="c-password" placeholder="Password" >
                                                     <button class="pass-show-btn" type="button">Show</button>
                                                 </div>
                                             </div>
