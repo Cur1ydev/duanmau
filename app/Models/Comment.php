@@ -31,4 +31,23 @@ class Comment extends BaseModel
             dd($throwable->getMessage());
         }
     }
+
+    public function commentWithProduct()
+    {
+        try {
+            $sql = "select $this->table.*, user.username,products.name from $this->table inner join user on $this->table.user_id = user.id inner join products on $this->table.product_id = products.id";
+            return getAll($sql, $this->model);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+    public function delete($id)
+    {
+        try {
+            $sql = "delete from $this->table where id= ?";
+            return deleteTable($sql, $this->model, $id);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
 }

@@ -9,6 +9,8 @@ use Phroute\Phroute\RouteCollector;
 use App\Controllers\Admin\DashboardController;
 use App\Controllers\Admin\ProductController as AdminProduct;
 use App\Controllers\Admin\CategoryController as AdminCategory;
+use App\Controllers\Admin\UserController as AdminUser;
+use App\Controllers\Admin\CommentController as AdminComment;
 
 $route = new RouteCollector();
 $url = !isset($_GET['url']) ? '/' : $_GET['url'];
@@ -22,8 +24,7 @@ $route->post('login',[UserController::class,'login']);
 $route->get('register',[UserController::class,'register']);
 $route->post('register',[UserController::class,'register']);
 $route->get('logout',function (){
-    unset($_SESSION['username']);
-    unset($_SESSION['id']);
+    session_destroy();
     redirect('/login');
 });
 $route->post('comment',[CommentController::class,'comment']);
@@ -46,10 +47,17 @@ $route->group(['prefix' => 'admin'],function ($route){
         $route->post('update/{id}',[AdminCategory::class,'update']);
         $route->get('delete/{id}',[AdminCategory::class,'delete']);
     });
-    $route->get('logout',function (){
-        unset($_SESSION['admin']);
-        unset($_SESSION['id_admin']);
-        redirect('/login');
+    $route->group(['prefix' => 'user'],function ($route){
+        $route->get('/',[AdminUser::class,'list']);
+        $route->get('store',[AdminUser::class,'store']);
+        $route->post('store',[AdminUser::class,'store']);
+        $route->get('update/{id}',[AdminUser::class,'update']);
+        $route->post('update/{id}',[AdminUser::class,'update']);
+        $route->get('delete/{id}',[AdminUser::class,'delete']);
+    });
+    $route->group(['prefix' => 'comment'],function ($route){
+        $route->get('/',[AdminComment::class,'list']);
+        $route->get('delete/{id}',[AdminComment::class,'delete']);
     });
 
 });

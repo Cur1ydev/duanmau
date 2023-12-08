@@ -3,23 +3,36 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Traits\Middleware;
-use mysql_xdevapi\Statement;
 
 class DashboardController extends Controller
 {
     use Middleware;
-    private $model;
+
+    private $product, $category;
 
     public function __construct()
     {
         static::checkLogin();
-        $this->model = new Product();
+        $this->product = new Product();
+        $this->category = new Category();
     }
 
     public function dashboard()
     {
-        return $this->view('admin.dashboard');
+        $totalCategory = count($this->category->list());
+        $totalProduct = count($this->product->list());
+        $mediumPrice = $this->product->avaragePrice()->avg_price;
+        $lowestPrice = $this->product->lowestPrice()->min_price;
+        $highestPrice = $this->product->highestPrice()->max_price;
+        $chartCategory = [];
+        foreach ($this->category->list() as $category) {
+            $chartCategory[] = $category->category_name;
+            $chartProduct[] = count($this->product->countProductByCategory($category->id));
+            $chartColor[] = $category->color;
+        }
+        return $this->view('admin.dashboard', compact('totalCategory', 'totalProduct', 'mediumPrice', 'lowestPrice', 'highestPrice', 'chartProduct', 'chartCategory', 'chartColor'));
     }
 }

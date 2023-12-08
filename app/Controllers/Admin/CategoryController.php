@@ -10,15 +10,14 @@ use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     use Middleware;
-
     private $model;
 
     public function __construct()
     {
         static::checkLogin();
         $this->model = new Category();
-    }
 
+    }
     public function list()
     {
         $category = $this->model->list();

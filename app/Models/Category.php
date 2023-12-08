@@ -33,7 +33,7 @@ class Category extends BaseModel
     public function store($name, $slug, $description, $status)
     {
         try {
-            $sql = "insert into $this->table(category_name,category_slug,category_description,category_status) values(?,?,?,?)";
+            $sql = "insert into $this->table(category_name,category_slug,category_description,category_status,color) values(?,?,?,?,CONCAT('#', SUBSTRING(MD5(RAND()), 1, 6)))";
             return insertTable($sql, $this->model, [$name, $slug, $description, $status]);
         } catch (\Throwable $throwable) {
             dd($throwable->getMessage());
@@ -44,7 +44,7 @@ class Category extends BaseModel
     {
         try {
             $sql = "update $this->table set category_name = ?,category_slug=?,category_description=?,category_status=? where id= ?";
-            return insertTable($sql, $this->model, [$name, $slug, $description, $status, $id]);
+            return updateTable($sql, $this->model, [$name, $slug, $description, $status, $id]);
         } catch (\Throwable $throwable) {
             dd($throwable->getMessage());
         }

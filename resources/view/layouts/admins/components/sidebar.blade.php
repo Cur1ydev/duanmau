@@ -75,7 +75,7 @@
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="/admin/category">Danh sách bình luận</a>
+                                <a href="/admin/comment">Danh sách bình luận</a>
                             </li>
                         </ul>
                     </li>

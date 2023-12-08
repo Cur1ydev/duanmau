@@ -149,4 +149,39 @@ class Product
             dd($throwable->getMessage());
         }
     }
+
+    public function lowestPrice()
+    {
+        try {
+            $sql = "select min(price) as min_price from $this->table";
+            return getOne($sql, $this->model);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+    public function highestPrice()
+    {
+        try {
+            $sql = "select max(price) as max_price from $this->table";
+            return getOne($sql, $this->model);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+    public function avaragePrice(){
+        try {
+            $sql = "select avg(price) as avg_price from $this->table";
+            return getOne($sql, $this->model);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
+    public function countProductByCategory($id){
+        try {
+            $sql = "select * from $this->table where category_id = '$id'";
+            return getAll($sql,$this->model);
+        } catch (\Throwable $throwable) {
+            dd($throwable->getMessage());
+        }
+    }
 }

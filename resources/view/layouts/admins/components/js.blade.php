@@ -96,10 +96,12 @@
 <script src="{{BASE_URL . "public/admin"}}/assets/js/notify/index.js"></script>
 
 <!-- Apexchar js -->
+
 <script src="{{BASE_URL . "public/admin"}}/assets/js/chart/apex-chart/apex-chart1.js"></script>
 <script src="{{BASE_URL . "public/admin"}}/assets/js/chart/apex-chart/moment.min.js"></script>
 <script src="{{BASE_URL . "public/admin"}}/assets/js/chart/apex-chart/apex-chart.js"></script>
 <script src="{{BASE_URL . "public/admin"}}/assets/js/chart/apex-chart/stock-prices.js"></script>
+@stack('js')
 <script src="{{BASE_URL . "public/admin"}}/assets/js/chart/apex-chart/chart-custom1.js"></script>
 
 
@@ -118,3 +120,5 @@
 
 <!-- Theme js -->
 <script src="{{BASE_URL . "public/admin"}}/assets/js/script.js"></script>
+
+
